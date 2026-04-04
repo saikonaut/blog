@@ -284,7 +284,16 @@ export function NotionPage({
   const socialDescription =
     getPageProperty<string>('Description', block, recordMap) ||
     config.description
-
+  if (!config.isServer) {
+    ;(window as any).notionSearchTest = async () => {
+      const r = await searchNotion({
+        query: 'example',
+        ancestorId: site.rootNotionPageId
+      })
+      console.log('manual search result', r)
+    }
+  }
+  console.log('search enabled?', config.isSearchEnabled, searchNotion)
   return (
     <>
       <PageHead
@@ -324,7 +333,6 @@ export function NotionPage({
         pageAside={pageAside}
         footer={<Footer />}
       />
-
     </>
   )
 }

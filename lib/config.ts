@@ -109,8 +109,8 @@ export const navigationLinks: Array<NavigationLink | undefined> = getSiteConfig(
 )
 
 // Optional site search
-export const isSearchEnabled: boolean = getSiteConfig('isSearchEnabled', true)
-
+export const isSearchEnabled =
+  process.env.NEXT_PUBLIC_IS_SEARCH_ENABLED === 'true'
 // ----------------------------------------------------------------------------
 
 // Optional redis instance for persisting preview images

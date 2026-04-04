@@ -7,7 +7,7 @@ export default siteConfig({
   // the site's root Notion page (required)
   //rootNotionPageId: '0917609e06dd835782bc01ac0cd6867f',
   rootNotionPageId,
-
+  isSearchEnabled: true,
   // if you want to restrict pages to a single notion workspace (optional)
   // (this should be a Notion ID; see the docs for how to extract this)
   rootNotionSpaceId: null,
@@ -55,8 +55,8 @@ export default siteConfig({
 
   // whether to use the default notion navigation style or a custom one with links to
   // important pages. To use `navigationLinks`, set `navigationStyle` to `custom`.
-  navigationStyle: 'default'
-  // navigationStyle: 'custom',
+  //navigationStyle: 'default'
+  navigationStyle: 'custom'
   // navigationLinks: [
   //   {
   //     title: 'About',
