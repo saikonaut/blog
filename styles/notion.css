@@ -493,7 +493,6 @@ body.dark-mode .notion-app {
     linear-gradient(#111827 1px, transparent 1px),
     linear-gradient(90deg, #111827 1px, transparent 1px);
   background-size: 32px 32px; /* grid cell size */
-  animation: grid-blink 4s ease-in-out infinite;
 }
 
 /* Light mode (optional) */
@@ -504,18 +503,4 @@ body:not(.dark-mode) .notion-app {
     linear-gradient(#e5e7eb 1px, transparent 1px),
     linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
   background-size: 32px 32px;
-  animation: grid-blink 4s ease-in-out infinite;
-}
-
-/* Blink / pulse animation */
-@keyframes grid-blink {
-  0% {
-    opacity: 0.15;
-  }
-  50% {
-    opacity: 0.35;
-  }
-  100% {
-    opacity: 0.15;
-  }
 }
