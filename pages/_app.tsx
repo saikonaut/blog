@@ -6,8 +6,6 @@ import 'prismjs/themes/prism-coy.css'
 import 'react-notion-x/styles.css'
 // global styles shared across the entire site
 import 'styles/global.css'
-// this might be better for dark mode
-// import 'prismjs/themes/prism-okaidia.css'
 // global style overrides for notion
 import 'styles/notion.css'
 // global style overrides for prism theme (optional)
@@ -32,30 +30,53 @@ if (!isServer) {
   bootstrap()
 }
 
+// GA4 ID from env
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID
+
+// helper to send GA pageview
+const gtagPageview = (url: string) => {
+  if (!GA_ID) return
+  // @ts-ignore
+  window.gtag?.('config', GA_ID, {
+    page_path: url
+  })
+}
+
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter()
 
   React.useEffect(() => {
-    function onRouteChangeComplete() {
+    function onRouteChangeComplete(url: string) {
+      // Fathom
       if (fathomId) {
         Fathom.trackPageview()
       }
 
+      // PostHog
       if (posthogId) {
         posthog.capture('$pageview')
       }
+
+      // Google Analytics
+      gtagPageview(url)
     }
 
+    // init Fathom
     if (fathomId) {
       Fathom.load(fathomId, fathomConfig)
     }
 
+    // init PostHog
     if (posthogId) {
       posthog.init(posthogId, posthogConfig)
     }
 
-    router.events.on('routeChangeComplete', onRouteChangeComplete)
+    // initial GA pageview on first load
+    if (GA_ID) {
+      gtagPageview(window.location.pathname)
+    }
 
+    router.events.on('routeChangeComplete', onRouteChangeComplete)
     return () => {
       router.events.off('routeChangeComplete', onRouteChangeComplete)
     }

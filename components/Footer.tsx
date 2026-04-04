@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import * as config from '@/lib/config'
 import { GitHubIcon } from '@/lib/icons/github'
+import { Behance } from '@/lib/icons/behance'
 import { LinkedInIcon } from '@/lib/icons/linkedin'
 import { MoonIcon } from '@/lib/icons/moon'
 import { SunIcon } from '@/lib/icons/sun'
@@ -48,6 +49,17 @@ export function FooterImpl() {
       </div>
 
       <div className={styles.social}>
+        {config.behance && (
+          <a
+            className={styles.linkedin}
+            href={`https://www.behance.net/${config.behance}`}
+            title={`Behance ${config.author}`}
+            target='_blank'
+            rel='noopener noreferrer'
+          >
+            <Behance />
+          </a>
+        )}
         {config.twitter && (
           <a
             className={styles.twitter}

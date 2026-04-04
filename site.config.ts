@@ -1,8 +1,12 @@
 import { siteConfig } from './lib/site-config'
 
+const rootNotionPageId =
+  process.env.NEXT_PUBLIC_ROOT_NOTION_PAGE_ID ??
+  '0917609e06dd835782bc01ac0cd6867f' // optional fallback
 export default siteConfig({
   // the site's root Notion page (required)
-  rootNotionPageId: '0917609e06dd835782bc01ac0cd6867f',
+  //rootNotionPageId: '0917609e06dd835782bc01ac0cd6867f',
+  rootNotionPageId,
 
   // if you want to restrict pages to a single notion workspace (optional)
   // (this should be a Notion ID; see the docs for how to extract this)
@@ -14,11 +18,13 @@ export default siteConfig({
   author: 'Saikat Pyne',
 
   // open graph metadata (optional)
-  description: 'Systems for building trust and brand advantage in an AI-saturated world.',
+  description:
+    'Systems for building trust and brand advantage in an AI-saturated world.',
 
   // social usernames (optional)
   twitter: 'imsaikatpyne',
   linkedin: 'saikatpyne',
+  behance: 'saikatpyne',
   // mastodon: '#', // optional mastodon profile URL, provides link verification
   // newsletter: '#', // optional newsletter URL
   // youtube: '#', // optional youtube channel name or `channel/UCGbXXXXXXXXXXXXXXXXXXXXXX`

@@ -1,5 +1,7 @@
 import Document, { Head, Html, Main, NextScript } from 'next/document'
 
+const GA_ID = process.env.NEXT_PUBLIC_GA_ID || 'G-XXXXXXX'
+
 export default class MyDocument extends Document {
   override render() {
     return (
@@ -7,8 +9,30 @@ export default class MyDocument extends Document {
         <Head>
           <link rel='shortcut icon' href='/favicon.ico' />
           <link rel='icon' type='image/png' sizes='32x32' href='favicon.png' />
-
           <link rel='manifest' href='/manifest.json' />
+
+          {/* Google Analytics */}
+          {GA_ID && (
+            <>
+              <script
+                async
+                src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}
+              />
+              <script
+                // GA4 init
+                dangerouslySetInnerHTML={{
+                  __html: `
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', '${GA_ID}', {
+                      page_path: window.location.pathname,
+                    });
+                  `
+                }}
+              />
+            </>
+          )}
         </Head>
 
         <body>
@@ -53,7 +77,6 @@ export default class MyDocument extends Document {
             }}
           />
           <Main />
-
           <NextScript />
         </body>
       </Html>
