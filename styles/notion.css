@@ -514,3 +514,7 @@ body:not(.dark-mode) .notion-app {
 .notion-collection-row {
   background-color: var(--bg-color);
 }
+
+.notion-page-icon-hero {
+  display: none;
+}
