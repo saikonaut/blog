@@ -504,3 +504,13 @@ body:not(.dark-mode) .notion-app {
     linear-gradient(90deg, #e5e7eb 1px, transparent 1px);
   background-size: 32px 32px;
 }
+
+.notion-page-content,
+.notion-collection-row {
+  background-color: white;
+}
+
+.dark-mode .notion-page-content,
+.notion-collection-row {
+  background-color: var(--bg-color);
+}
