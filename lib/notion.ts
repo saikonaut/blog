@@ -57,7 +57,7 @@ function getBlockPropertyValue(
       : blockVal?.properties?.[propertyId]
 
   if (Array.isArray(raw) && raw.length > 0) {
-    return raw[0]?.[0] as string | undefined
+    return (raw as any[])[0]?.[0] as string | undefined
   }
   return undefined
 }
@@ -66,13 +66,13 @@ function getBlockDateValue(blockVal: any, propertyId: string): number {
   if (propertyId === 'created_time') return blockVal?.created_time ?? 0
   if (propertyId === 'last_edited_time') return blockVal?.last_edited_time ?? 0
 
-  const raw = blockVal?.properties?.[propertyId]
+  const raw: any[] | undefined = blockVal?.properties?.[propertyId]
   if (!Array.isArray(raw)) return 0
 
-  for (const segment of raw) {
+  for (const segment of raw as any[]) {
     const decorations = segment?.[1]
     if (!Array.isArray(decorations)) continue
-    for (const dec of decorations) {
+    for (const dec of decorations as any[]) {
       if (dec?.[0] === 'd' && dec?.[1]?.start_date) {
         return new Date(dec[1].start_date).getTime()
       }
