@@ -17,6 +17,9 @@ importers:
       '@keyvhq/redis':
         specifier: ^1.6.10
         version: 1.6.28
+      '@notionhq/client':
+        specifier: ^5.17.0
+        version: 5.17.0
       classnames:
         specifier: ^2.5.1
         version: 2.5.1
@@ -639,6 +642,10 @@ packages:
     engines: {node: '>= 10'}
     cpu: [x64]
     os: [win32]
+
+  '@notionhq/client@5.17.0':
+    resolution: {integrity: sha512-hSNm3VUW5+Qs9vPOmegS6r1RT8O1jtTE/22wmSmiJc9kkb2YyddWr8SBQruvp06rALn2r2RAh9mLPirUUonsvw==}
+    engines: {node: '>=18'}
 
   '@opentelemetry/api-logs@0.208.0':
     resolution: {integrity: sha512-CjruKY9V6NMssL/T1kAFgzosF1v9o6oeN+aX5JB/C/xPNtmgIJqcXHG7fA82Ou1zCpWGl4lROQUKwUNE1pMCyg==}
@@ -3102,6 +3109,8 @@ snapshots:
 
   '@next/swc-win32-x64-msvc@16.2.0':
     optional: true
+
+  '@notionhq/client@5.17.0': {}
 
   '@opentelemetry/api-logs@0.208.0':
     dependencies:
